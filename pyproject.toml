@@ -38,7 +38,7 @@ addopts = "-s"
 line-length = 120
 
 [tool.ruff.lint]
-extend-select = ["UP"]
+select = ["F", "UP"]
 ignore = ["F722"]
 
 [tool.ruff.lint.extend-per-file-ignores]

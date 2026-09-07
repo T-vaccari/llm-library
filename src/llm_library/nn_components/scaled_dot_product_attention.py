@@ -1,5 +1,4 @@
-import torch
-from einops import reduce, einsum
+from einops import einsum
 from llm_library.nn_components.softmax import softmax
 
 

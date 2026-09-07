@@ -1,10 +1,8 @@
 import torch
 from torch import nn
-import einops
-from einops import einsum, rearrange
+from einops import rearrange
 
 
-from llm_library.nn_components.linear import Linear
 
 """
 To inject positional information into the model, 

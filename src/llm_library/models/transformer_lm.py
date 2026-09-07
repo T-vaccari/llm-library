@@ -1,11 +1,9 @@
-import torch
 from torch import nn
 
 from llm_library.nn_components.embedding import Embedding
 from llm_library.nn_components.transformer_block import TransformerBlock
 from llm_library.nn_components.rms_norm import RMSNorm
 from llm_library.nn_components.linear import Linear
-from llm_library.nn_components.softmax import softmax
 
 
 

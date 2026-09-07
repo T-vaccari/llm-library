@@ -1,7 +1,5 @@
 import torch
 from torch import nn
-import einops
-from einops import einsum
 
 
 from llm_library.nn_components.linear import Linear

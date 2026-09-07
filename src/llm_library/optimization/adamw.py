@@ -1,5 +1,4 @@
-from collections.abc import Callable, Iterable
-from typing import Optional
+from collections.abc import Callable
 import torch
 import math
 
@@ -11,7 +10,7 @@ class AdamW(torch.optim.Optimizer):
       defaults = {"alpha": lr, "betas": betas, "eps": eps, "weight_decay": weight_decay}
       super().__init__(params, defaults)
 
-   def step(self, closure: Optional[Callable] = None):
+   def step(self, closure: Callable | None = None):
       loss = None if closure is None else closure()
       for group in self.param_groups:
          alpha = group["alpha"] # Get the learning rate.

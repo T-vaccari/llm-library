@@ -43,7 +43,6 @@ class Tokenizer:
 
       PAT = r"""'(?:[sdmt]|ll|ve|re)| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+"""
 
-      merges = self.merges
       reversed_vocab = self.reversed_vocab
       text_merged_encoded = []
 
@@ -155,4 +154,3 @@ class Tokenizer:
 
 
       
-

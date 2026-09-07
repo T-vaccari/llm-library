@@ -1,4 +1,3 @@
-import torch
 from torch import nn
 
 from llm_library.nn_components.multi_head_attention import CausalMultiHeadSelfAttention

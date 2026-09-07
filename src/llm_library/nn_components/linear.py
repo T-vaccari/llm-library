@@ -1,6 +1,5 @@
 import torch
 from torch import nn
-import einops
 from einops import einsum
 
 class Linear(nn.Module):

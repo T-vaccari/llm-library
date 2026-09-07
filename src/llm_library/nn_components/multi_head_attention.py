@@ -1,5 +1,5 @@
 import torch
-from einops import einsum, rearrange
+from einops import rearrange
 from torch import nn
 from llm_library.nn_components.linear import Linear
 from llm_library.nn_components.rope import RotaryPositionalEmbedding

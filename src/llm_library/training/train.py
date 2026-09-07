@@ -102,10 +102,6 @@ def create_experiment(args):
    config_text = json.dumps(config, indent=3)
 
    print("Run directory:", run_dir)
-   print("=" * 80)
-   print("EXPERIMENT CONFIGURATION")
-   print(config_text)
-   print("=" * 80)
 
    with open(os.path.join(run_dir, "config.json"), "w") as f:
       f.write(config_text + "\n")
@@ -375,7 +371,7 @@ def parse_args():
    optimizer.add_argument(
       "--cosine-steps",
       type=int,
-      required=True,
+      default=None,
    )
 
    optimizer.add_argument(
@@ -412,7 +408,7 @@ def parse_args():
    training.add_argument(
       "--run-name",
       type=str,
-      required=True,
+      default="tinystories",
    )
 
    training.add_argument(
@@ -470,4 +466,6 @@ def parse_args():
 
 if __name__ == "__main__":
    args = parse_args()
+   if args.cosine_steps is None:
+      args.cosine_steps = args.num_steps
    main(args)
