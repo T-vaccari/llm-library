@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/T-vaccari/llm-library/actions/workflows/ci.yml/badge.svg)](https://github.com/T-vaccari/llm-library/actions/workflows/ci.yml)
 
+![llm-library architecture](assets/llm-library-architecture.svg)
+
 ## What the Library Is
 
 The idea behind this project was to have, in a unique place, implementations of the core ideas that power modern LLMs, unpacked from unnecessary complexity and written in clear Python without other abstraction layers.
