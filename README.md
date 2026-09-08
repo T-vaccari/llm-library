@@ -35,6 +35,14 @@ Here is a list of what has been implemented (paper citations are still a work in
 - Learning-rate scheduling and gradient clipping
 - Training, checkpointing, and text generation
 
+## Scope
+
+llm-library v0.1.0 focuses on the core model, pretraining, and inference components of a Transformer language model.
+
+It does not currently cover distributed training, post-training methods such as supervised fine-tuning (SFT), reinforcement learning from human feedback (RLHF), reinforcement learning with verifiable rewards (RLVR), large-scale evaluation, or production serving.
+
+In future versions, I hope to explore pivotal architectural developments—including Mixture-of-Experts (MoE) models—as well as additional components across the broader LLM training and inference stack.
+
 ## Installation and Quick Start
 
 The project uses [uv](https://docs.astral.sh/uv/) to manage the Python environment and all the dependencies. After cloning the repository, everything can be installed with:
