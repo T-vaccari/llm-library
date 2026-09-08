@@ -126,7 +126,7 @@ uv run python -m llm_library.training.train \
   --device cuda
 ```
 
-Under `examples/tinystories` you can also find `16m_tokens.pth`, a checkpoint obtained after about 16 million training tokens. You can resume from it using the same configuration and adding:
+Under `examples/tinystories` you can also find `16m_tokens.pth` and `80m_tokens.pth`, two checkpoints obtained after training on about 16 and 80 million tokens. You can resume from the first one using the same configuration and adding:
 
 ```bash
 --resume-checkpoint examples/tinystories/16m_tokens.pth
@@ -136,7 +136,7 @@ Once you have a checkpoint, you can play with the model and generate text with:
 
 ```bash
 uv run python -m llm_library.generation.decode \
-  --checkpoint examples/tinystories/16m_tokens.pth \
+  --checkpoint examples/tinystories/80m_tokens.pth \
   --vocab-path examples/tinystories/vocab.pkl \
   --merges-path examples/tinystories/merges.pkl \
   --device mps \
@@ -147,6 +147,50 @@ uv run python -m llm_library.generation.decode \
 
 The generation script opens an interactive prompt, so you can write the beginning of a story and let the model continue it.
 Give it a spin, even if it's still a mere english blabber !
+
+### Example Generations
+
+To show how the model changes during training, I used the same prompt with checkpoints trained on approximately 16, 40, and 80 million tokens. All generations used a temperature of `0.5`, top-p of `0.9`, and a maximum of 150 new tokens.
+
+The prompt was:
+
+```text
+Once upon a time, there was a little girl named Lily.
+```
+
+After 16 million tokens:
+
+```text
+Once upon a time, there was a little girl named Lily. Lily loved to play outside in the sun. One day, she saw a big tree with a small hole in it. She wanted to touch it, but it was too high.
+
+Lily asked her mom, "Can I touch the hole?" Her mom said, "No, Lily. It is not safe." Lily did not listen to her mom. She kept trying to make a mess, but she did not want to play with her.
+
+Lily's mom had to clean up the mess. She said, "Lily, you should not play with your toys. You should not play with the ball. You should not play with the ball." Lily felt sad and angry. She said, "I'm sorry, mom. I was wrong.
+```
+
+After 40 million tokens:
+
+```text
+Once upon a time, there was a little girl named Lily. She loved to play with her toy bunny. One day, Lily saw a big, round ball in her yard. She wanted to play with it, but she was scared.
+
+Lily asked her friend Tom, "Can I play with the ball?" Tom said, "No, it is my ball." Lily was sad, but she did not give up. She kept playing with the big, round ball.
+
+Later, Lily's mom came into the yard. She saw the big, round, and said, "Lily, that's not a ball. It's a big, round, and shiny ball. It's a special gift for your friend, Tim." Lily was so happy, and she hugged her friend. They played with the big
+```
+
+After 80 million tokens:
+
+```text
+Once upon a time, there was a little girl named Lily. She loved to play with her toy train. One day, she was playing with her train when it started to rain. Lily was sad and didn't know what to do.
+
+Lily's mommy saw her sad face and asked her what was wrong. Lily told her mommy that she had to go home. Her mommy said, "Don't worry, Lily. We can go back to the store and get your train."
+
+So, Lily and her mommy went to the store. Lily saw a big box of toys and thought it would be a good idea to play with them. They played with the toys and had lots of fun. Lily was happy that she could play with her train, even if it was not wet.
+
+<|endoftext|>
+```
+
+These are still small models trained on a limited dataset, but the comparison shows how the generations become more coherent as the training progresses.
 
 ## Limitations
 
@@ -159,8 +203,6 @@ In some parts of the implementation I rely on `einops` to describe tensor operat
 I would like to implement an autograd engine and to keep up with the most recent developments in LLM architecture.
 
 As follow-up work, I would also like to implement the performance-critical pieces efficiently in C++.
-
-I hope to also add a separate branch or release with an already trained version of the model, so that it will be possible to directly play with it without having to run the entire training process.
 
 ## Acknowledgements
 
