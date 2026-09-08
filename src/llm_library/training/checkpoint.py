@@ -14,7 +14,8 @@ def save_checkpoint(model, optimizer, iteration, out):
    # Obj is going to be a dictionary
 
    obj = dict()
-   obj["model"] = model.state_dict()
+   model_to_save = model._orig_mod if hasattr(model, "_orig_mod") else model
+   obj["model"] = model_to_save.state_dict()
    obj["optimizer"] = optimizer.state_dict()
    obj["iteration"] = iteration
 
@@ -24,8 +25,11 @@ def save_checkpoint(model, optimizer, iteration, out):
 
 def load_checkpoint(src, model, optimizer):
    obj = torch.load(src)
-   model.load_state_dict(obj["model"])
+   model_state = {
+      key.removeprefix("_orig_mod."): value
+      for key, value in obj["model"].items()
+   }
+   model.load_state_dict(model_state)
    optimizer.load_state_dict(obj["optimizer"])
 
    return obj["iteration"]
-

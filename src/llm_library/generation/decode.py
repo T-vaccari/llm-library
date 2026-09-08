@@ -35,7 +35,11 @@ def load_model_checkpoint(model, checkpoint):
       map_location=next(model.parameters()).device,
       weights_only=True,
    )
-   model.load_state_dict(state["model"])
+   model_state = {
+      key.removeprefix("_orig_mod."): value
+      for key, value in state["model"].items()
+   }
+   model.load_state_dict(model_state)
    model.eval()
 
    return model
